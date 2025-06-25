@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="home pages\homePageC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="home pages\homePageE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="home pages\homePageM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="start\signInCus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="start\signInEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="start\signUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="start\loginPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
