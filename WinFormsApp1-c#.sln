@@ -5,7 +5,7 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1-c#", "WinFormsApp1-c#\WinFormsApp1-c#.csproj", "{7888E56F-ADF5-4599-913A-1295D2C63A7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "matala-sofit", "matala-sofit\matala-sofit.csproj", "{12824847-FBC8-4B3B-97C4-69EA97036355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "matalaSofit", "matala-sofit\matalaSofit.csproj", "{12824847-FBC8-4B3B-97C4-69EA97036355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

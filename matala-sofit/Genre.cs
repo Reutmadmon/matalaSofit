@@ -10,35 +10,35 @@ namespace matala_sofit
 {
     public class Genre
     {
-        internal string name { get; set; }
-        internal string ageRestriction { get; set; }
-        internal string shortDescription { get; set; }
-        internal Book[] books { get; set; }
-        public Genre(string name, string ageRestriction, string description, Book[] books)
+        public string Name { get; set; }
+        public string AgeRestriction { get; set; }
+        public string ShortDescription { get; set; }
+        public List<Book> Books { get; set; }
+
+        public Genre(string name, string ageRestriction, string description)
         {
-            this.name = name;
-            this.ageRestriction = ageRestriction;
-            this.shortDescription = description;
-            this.books = books;
+            this.Name = name;
+            this.AgeRestriction = ageRestriction;
+            this.ShortDescription = description;
         }
-        
+
         public override string ToString()
         {
-            string bookTitles = books != null && books.Length > 0
-                ? string.Join(", ", books.Select(b => b.title))
+            string bookTitles = Books != null && Books.Count > 0
+                ? string.Join(", ", Books.Select(b => b.Title))
                 : "No books";
 
-            return $"Genre: {name}\n" +
-                   $"Age Restriction: {ageRestriction}\n" +
-                   $"Description: {shortDescription}\n" +
+            return $"Genre: {Name}\n" +
+                   $"Age Restriction: {AgeRestriction}\n" +
+                   $"Description: {ShortDescription}\n" +
                    $"Books: {bookTitles}";
         }
+
         public override bool Equals(object obj)
         {
             if (obj is Genre other)
-                return this.name == other.name;
+                return this.Name == other.Name;
             return false;
         }
-
     }
 }

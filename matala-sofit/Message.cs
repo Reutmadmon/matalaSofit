@@ -9,39 +9,39 @@ namespace matala_sofit
 {
     public class Message
     {
-        internal MessageType type{ get; set; }
-        internal string text { get; set; }
-        internal DateTime timestamp { get; set; }
+        public MessageType Type { get; set; }
+        public string Text { get; set; }
+        public DateTime Timestamp { get; set; }
+        //change to not restart on each restart and also another ctor
         public Message(MessageType type, params object[] args)
         {
-            this.type = type;
-            this.timestamp = DateTime.Now;
+            this.Type = type;
+            this.Timestamp = DateTime.Now;
 
-            if(MessageTemplate.Templates.TryGetValue(type, out string template)) //ask about this
+            if (MessageTemplate.Templates.TryGetValue(type, out string template)) //ask about this
             {
-                this.text = string.Format(template, args);
+                this.Text = string.Format(template, args);
             }
             else
             {
-                this.text = "there is no template for this type";
+                this.Text = "there is no template for this type";
             }
-
-
         }
+
         public override bool Equals(object obj)
         {
             if (obj is Message other)
             {
-                return this.type == other.type &&
-                       this.text == other.text &&
-                       this.timestamp == other.timestamp;
+                return this.Type == other.Type &&
+                       this.Text == other.Text &&
+                       this.Timestamp == other.Timestamp;
             }
             return false;
         }
 
         public override string ToString()
         {
-            return $" {text} [{timestamp:yyyy-MM-dd HH:mm}]";
+            return $" {Text} [{Timestamp:yyyy-MM-dd HH:mm}]";
         }
     }
 }

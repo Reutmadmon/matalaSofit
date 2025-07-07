@@ -8,33 +8,34 @@ namespace matala_sofit
 {
     public abstract class Employee : Person
     {
-        internal int empId { get; set; }
-        internal Boolean onShift { get; set; }
+        public int EmpId { get; set; }
+        public Boolean OnShift { get; set; }
+        protected Library library;
 
         public Employee(string name, string lastName, int id, string password, int age, int phoneNum, string email, string photo,
-                        int empId, bool onShift)
-            :base(name, lastName, id, password, age, phoneNum, email, photo)
+                        int empId, Library library)
+            : base(name, lastName, id, password, age, phoneNum, email, photo)
         {
-            this.empId = empId;
-            this.onShift = onShift;
-            //inTime and outTime ask chat
+            this.EmpId = empId;
+            this.OnShift = false;
+            this.library = library;
         }
 
-        public  bool signOnToShift()
+        public bool SignOnToShift()
         {
-            if (!onShift)
+            if (!OnShift)
             {
-                onShift = true;
+                OnShift = true;
                 return true;
             }
             return false;
-
         }
-        public  bool signOutOfShift()
+
+        public bool SignOutOfShift()
         {
-            if (onShift)
+            if (OnShift)
             {
-                onShift = false;
+                OnShift = false;
                 return true;
             }
             return false;
@@ -43,14 +44,13 @@ namespace matala_sofit
         public override bool Equals(object obj)
         {
             if (obj is Employee other)
-                return base.Equals(other) && this.empId == other.empId;
+                return base.Equals(other) && this.EmpId == other.EmpId;
             return false;
         }
 
         public override string ToString()
         {
-            return $"Employee ID: {empId}\nOn Shift: {(onShift ? "Yes" : "No")}";
+            return $"Employee ID: {EmpId}\nOn Shift: {(OnShift ? "Yes" : "No")}";
         }
-
     }
 }

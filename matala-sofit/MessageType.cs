@@ -9,6 +9,7 @@ namespace matala_sofit
         public enum MessageType
         {
             BookDueSoon,
+            BookDueDate,//this one
             OverdueBookNotice,
             ReservationReady,
             ShiftStarted,

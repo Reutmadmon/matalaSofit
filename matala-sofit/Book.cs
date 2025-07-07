@@ -8,48 +8,57 @@ namespace matala_sofit
 {
     public class Book
     {
-        internal string title { get; set; }
-        internal string author { get; set; }
-        internal int bookId { get; set; }//add better set
-        internal Genre genre { get; set; }
-        internal int copies { get; set; }
-        internal string locationOnShelf { get; set; }
-        internal Client[] clients { get; set; }
-        internal string photo {  get; set; }
-        internal int[] rating { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int BookId { get; set; }
+        public Genre Genre { get; set; }
+        public int Copies { get; set; }
+        public string LocationOnShelf { get; set; }
+        public Client[] Clients { get; set; }
+        public string Photo { get; set; }
+        public int[] Rating { get; set; } // מערך מונים מ0-4 חמישה כוכבים
+        public string Description { get; set; }
 
-        //אין צורך בנגיש להשאלה פשוט מורידים את מס העותקים
-
-            public Book(string title, string author, int bookId, Genre genre, int copies, 
+        public Book(string title, string author, int bookId, Genre genre, int copies,
             string locationOnShelf, string photo)
         {
-            this.title = title;
-            this.author = author;
-            this.bookId = bookId;
-            this.genre = genre;
-            this.copies = copies;
-            this.locationOnShelf = locationOnShelf;
-            this.photo = photo;
+            this.Title = title;
+            this.Author = author;
+            this.BookId = bookId;
+            this.Genre = genre;
+            genre.Books.Add(this); // add to genre list
+            this.Copies = copies;
+            this.LocationOnShelf = locationOnShelf;
+            this.Photo = photo;
         }
-    
+
         public override string ToString()
         {
-            return $"Title: {title}, Author: {author}, Book ID: {bookId}, Genre: {genre}," +
-                $" Copies: {copies}, Location on Shelf: {locationOnShelf}, Available: {(copies > 0 ? "Yes" : "No")}";
+            return $"Title: {Title}, Author: {Author}, Book ID: {BookId}, Genre: {Genre}, " +
+                   $"Copies: {Copies}, Location on Shelf: {LocationOnShelf}, Available: {(Copies > 0 ? "Yes" : "No")}";
         }
+
+        public double CalcRating()
+        {
+            int sum = 0;
+            int countReaders = 0;
+
+            for (int i = 0; i < this.Rating.Length; i++)
+            {
+                countReaders += this.Rating[i];
+                sum += (i + 1) * this.Rating[i];
+            }
+
+            return sum / (double)countReaders;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is Book other)
             {
-                return this.bookId == other.bookId; 
+                return this.BookId == other.BookId;
             }
             return false;
         }
-
-        public double calcRating()
-        {
-            //to do
-        }
-
     }
 }

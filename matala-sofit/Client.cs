@@ -6,38 +6,47 @@ using System.Threading.Tasks;
 
 namespace matala_sofit
 {
-    public class Client : Person
+    public class Client : Person, IUserOperations
     {
-        List<Book> booksBorrows { get; set; } = new List<Book>();
-        List<Book> booksHistory { get; set; } = new List<Book>();
-        //private double debt{get;set; } to think about how
-       
-        public Client(string name, string lastName, int id,string password, int age, int phoneNum,
+        List<Book> BooksBorrowed { get; set; } = new List<Book>();
+        List<Book> BooksHistory { get; set; } = new List<Book>();
+        List<Book> Favorites { get; set; } = new List<Book>();
+        //חוב
+
+        public Client(string name, string lastName, int id, string password, int age, int phoneNum,
                        string email, string photo)
            : base(name, lastName, id, password, age, phoneNum, email, photo)
         {
-
         }
-        public void BorrowBook(Book book)
+
+        public void BorrowBook(Book book, int id) //finish this method
         {
-            if (book != null && !booksBorrows.Contains(book))
+            if (book != null && !BooksBorrowed.Contains(book))
             {
-                booksBorrows.Add(book);
+                BooksBorrowed.Add(book);
+                //שולח לו הודעה עם פרטים על תאריך  וזמן החזרה ואיזה ספר
+                //הספר לא יהיה במערך הספרים של הספרייה
+                //להוסיף למערך ההיסטוריה של הלקוח
             }
             else
             {
                 throw new Exception("Book is already borrowed or does not exist.");
             }
         }
-        public void ReturnBook(Book book)
+
+        public void ReturnBook(Book book, int id) //finish this method
         {
-            if (book != null && booksBorrows.Contains(book))
-                booksBorrows.Remove(book);
-            if (!booksHistory.Contains(book))
+            if (book != null && BooksBorrowed.Contains(book))
+                BooksBorrowed.Remove(book);
+            if (!BooksHistory.Contains(book))
             {
-                booksHistory.Add(book);
+                BooksHistory.Add(book);
             }
-    }
+            // להוסיף למערך ההחזרה של הסדרן
+            // הספר יחזור למערך הספרים של הספרייה
+        }
+
+        //הוספת ספר למועדפים
 
         public override bool Equals(object obj)
         {
@@ -48,12 +57,12 @@ namespace matala_sofit
 
         public override string ToString()
         {
-            string borrows = booksBorrows != null && booksBorrows.Count > 0
-                ? string.Join(", ", booksBorrows)
+            string borrows = BooksBorrowed != null && BooksBorrowed.Count > 0
+                ? string.Join(", ", BooksBorrowed)
                 : "None";
 
-            string history = booksHistory != null && booksHistory.Count > 0
-                ? string.Join(", ", booksHistory)
+            string history = BooksHistory != null && BooksHistory.Count > 0
+                ? string.Join(", ", BooksHistory)
                 : "None";
 
             return base.ToString() + "\n" +
